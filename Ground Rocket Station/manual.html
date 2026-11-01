@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Rocket Ground Station (RGS) - Operational User Manual</title>
+<style>
+  @page {
+    size: A4;
+    margin: 16mm 14mm 16mm 14mm;
+  }
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    line-height: 1.5;
+    font-size: 9.5pt;
+    margin: 0;
+    padding: 0;
+  }
+  h1, h2, h3, h4 {
+    color: #0f172a;
+    font-weight: 700;
+  }
+  h1 { font-size: 22pt; margin-bottom: 4px; }
+  h2 {
+    font-size: 13.5pt;
+    border-bottom: 2px solid #0284c7;
+    padding-bottom: 3px;
+    margin-top: 18pt;
+    margin-bottom: 8pt;
+    page-break-before: always;
+    break-before: page;
+  }
+  h2.first-section {
+    page-break-before: avoid;
+    break-before: avoid;
+    margin-top: 10pt;
+  }
+  h3 { font-size: 10.5pt; margin-top: 10pt; margin-bottom: 4pt; color: #0369a1; page-break-after: avoid; }
+
+  .cover-page {
+    text-align: center;
+    page-break-after: always;
+    break-after: page;
+    padding-top: 60px;
+  }
+  .cover-icon {
+    font-size: 48pt;
+    margin-bottom: 12px;
+    color: #0284c7;
+    font-weight: bold;
+  }
+  .cover-title {
+    font-size: 26pt;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #0284c7;
+    margin: 0;
+  }
+  .cover-subtitle {
+    font-size: 13pt;
+    color: #475569;
+    font-weight: 400;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+  .badge-row {
+    margin: 20px 0;
+  }
+  .badge {
+    display: inline-block;
+    background: #f1f5f9;
+    color: #0f172a;
+    border: 1px solid #cbd5e1;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 8.5pt;
+    font-weight: 600;
+    margin: 0 4px;
+  }
+  .cover-meta {
+    margin-top: 70px;
+    font-size: 9.5pt;
+    color: #64748b;
+    line-height: 1.8;
+  }
+
+  .avoid-break { page-break-inside: avoid; break-inside: avoid; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10pt 0;
+    font-size: 8.5pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  th, td {
+    padding: 5pt 7pt;
+    text-align: left;
+    border: 1px solid #e2e8f0;
+  }
+  th {
+    background-color: #f8fafc;
+    color: #0f172a;
+    font-weight: 700;
+    border-bottom: 2px solid #cbd5e1;
+  }
+  tr:nth-child(even) td {
+    background-color: #f8fafc;
+  }
+
+  pre, code {
+    font-family: 'Consolas', 'DejaVu Sans Mono', 'Courier New', monospace;
+  }
+  code {
+    background: #f1f5f9;
+    color: #0369a1;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-size: 8pt;
+  }
+  pre {
+    background: #0f172a;
+    color: #f8fafc;
+    padding: 8pt 10pt;
+    border-radius: 5px;
+    font-size: 8pt;
+    line-height: 1.4;
+    overflow-x: auto;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .callout {
+    padding: 7pt 10pt;
+    margin: 8pt 0;
+    border-left: 4px solid #0284c7;
+    background: #f0f9ff;
+    border-radius: 0 5px 5px 0;
+    font-size: 8.5pt;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .callout-title {
+    font-weight: 700;
+    color: #0284c7;
+    margin-bottom: 2px;
+  }
+  .callout.warn {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+  }
+  .callout.warn .callout-title {
+    color: #d97706;
+  }
+  .callout.danger {
+    border-left-color: #ef4444;
+    background: #fef2f2;
+  }
+  .callout.danger .callout-title {
+    color: #dc2626;
+  }
+  .callout.success {
+    border-left-color: #10b981;
+    background: #ecfdf5;
+  }
+  .callout.success .callout-title {
+    color: #059669;
+  }
+
+  .grid-2 {
+    display: flex;
+    gap: 10px;
+    margin: 8pt 0;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  .grid-col {
+    flex: 1;
+    border: 1px solid #e2e8f0;
+    background: #f8fafc;
+    border-radius: 5px;
+    padding: 7pt 9pt;
+    font-size: 8.5pt;
+  }
+
+  .footer-text {
+    font-size: 8pt;
+    color: #94a3b8;
+    text-align: center;
+    margin-top: 25pt;
+    border-top: 1px solid #e2e8f0;
+    padding-top: 6pt;
+    page-break-inside: avoid;
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="cover-page">
+  <div class="cover-icon">&#9650; RGS &#9650;</div>
+  <h1 class="cover-title">ROCKET GROUND STATION</h1>
+  <div class="cover-subtitle">Operational User Manual & Telemetry Recovery Guide</div>
+
+  <div class="badge-row">
+    <span class="badge">Document Ver 2.4</span>
+    <span class="badge">High-Power Amateur Rocketry</span>
+    <span class="badge">PyQt6 & PyQtGraph 60 FPS</span>
+    <span class="badge">100% Offline Field Ready</span>
+  </div>
+
+  <div class="callout success avoid-break" style="max-width: 480px; margin: 30px auto; text-align: left;">
+    <div class="callout-title">Standard Operational Reference</div>
+    Comprehensive flight operations manual covering live telemetry reception, high-speed strip charts, dual-mode recovery maps, launch readiness gates, safety pad-lock tests, voice callouts, and firmware packet integration.
+  </div>
+
+  <div class="cover-meta">
+    <strong>Software:</strong> Rocket Ground Station (RGS)<br/>
+    <strong>Avionics Hardware:</strong> ESP32, Teensy, STM32, Arduino, Raspberry Pi Pico<br/>
+    <strong>RF Transceivers:</strong> LoRa (SX1276/SX1278), RFM95W, HC-12, XBee<br/>
+    <strong>Operating System:</strong> Windows 10 / 11 (Python 3.10+ & Standalone .EXE)
+  </div>
+</div>
+
+<!-- SECTION 1 -->
+<h2 class="first-section">1. System Architecture & Capabilities</h2>
+<p>
+  <strong>Rocket Ground Station (RGS)</strong> provides mission-critical telemetry capture, live aerodynamic visualization, and post-flight recovery guidance for high-power rocket flights. Communicating via USB serial radio receivers, RGS decodes packed binary telemetry at 20 Hz with zero dropped frames, monitors pyrotechnic deployment circuits, and logs every data point with per-sample flush persistence.
+</p>
+
+<div class="grid-2 avoid-break">
+  <div class="grid-col">
+    <strong>Telemetry & Data Link</strong>
+    <ul>
+      <li>20 Hz Binary Stream with XOR-0xAA verification</li>
+      <li>Automatic corrupted frame rejection</li>
+      <li>Text debug line passthrough to Event Log</li>
+      <li>Per-sample flushed CSV black-box logging</li>
+    </ul>
+  </div>
+  <div class="grid-col">
+    <strong>Recovery & Analysis</strong>
+    <ul>
+      <li>Dual-mode GPS: Satellite Map & Tactical Radar</li>
+      <li>Concentric metric range rings (50m to 5km)</li>
+      <li>Airborne wind drift & landing prediction</li>
+      <li>One-click GPS copy with Google Maps links</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 2 -->
+<h2>2. Telemetry Packet Protocol Specification</h2>
+<p>
+  The telemetry link transmits 28-byte binary frames in standard <strong>Little-Endian IEEE-754 format</strong>:
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Offset</th>
+      <th>Field</th>
+      <th>Type</th>
+      <th>Units</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>0..1</code></td>
+      <td>Sync Header</td>
+      <td><code>uint8[2]</code></td>
+      <td><code>0xAA 0x55</code></td>
+      <td>Frame synchronization word</td>
+    </tr>
+    <tr>
+      <td><code>2..5</code></td>
+      <td>Timestamp</td>
+      <td><code>uint32</code></td>
+      <td>ms</td>
+      <td>Flight computer uptime since boot (t_ms)</td>
+    </tr>
+    <tr>
+      <td><code>6</code></td>
+      <td>Flight State</td>
+      <td><code>uint8</code></td>
+      <td>Enum</td>
+      <td>0=Pad, 1=Boost, 2=Coast, 3=Drogue, 4=Main, 5=Landed</td>
+    </tr>
+    <tr>
+      <td><code>7..10</code></td>
+      <td>Acceleration</td>
+      <td><code>float32</code></td>
+      <td>m/s²</td>
+      <td>Vertical gravity-compensated acceleration</td>
+    </tr>
+    <tr>
+      <td><code>11..14</code></td>
+      <td>Altitude</td>
+      <td><code>float32</code></td>
+      <td>m AGL</td>
+      <td>Barometric altitude above launch pad ground level</td>
+    </tr>
+    <tr>
+      <td><code>15..18</code></td>
+      <td>Latitude</td>
+      <td><code>float32</code></td>
+      <td>Deg</td>
+      <td>WGS84 GPS Latitude in decimal degrees</td>
+    </tr>
+    <tr>
+      <td><code>19..22</code></td>
+      <td>Longitude</td>
+      <td><code>float32</code></td>
+      <td>Deg</td>
+      <td>WGS84 GPS Longitude in decimal degrees</td>
+    </tr>
+    <tr>
+      <td><code>23</code></td>
+      <td>Satellites</td>
+      <td><code>uint8</code></td>
+      <td>Count</td>
+      <td>Tracked GPS satellite constellation count (>=4 for 3D fix)</td>
+    </tr>
+    <tr>
+      <td><code>24</code></td>
+      <td>Continuity</td>
+      <td><code>uint8</code></td>
+      <td>Bitmask</td>
+      <td>Bit 0: Drogue pyro continuity; Bit 1: Main pyro continuity</td>
+    </tr>
+    <tr>
+      <td><code>25</code></td>
+      <td>Checksum</td>
+      <td><code>uint8</code></td>
+      <td>XOR</td>
+      <td>Running XOR of payload bytes 2..24 with seed <code>0xAA</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 3 -->
+<h2>3. Graphical Interface & Flight Monitoring</h2>
+
+<h3>Telemetry Metrics Cards</h3>
+<table>
+  <thead>
+    <tr>
+      <th>Indicator Card</th>
+      <th>Displayed Measurement</th>
+      <th>Operational Role</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>STATE</strong></td>
+      <td>PAD / BOOST / COAST / DROGUE / MAIN / LANDED</td>
+      <td>Current flight state detected by avionics state machine.</td>
+    </tr>
+    <tr>
+      <td><strong>ALTITUDE</strong></td>
+      <td>Current Altitude (meters AGL)</td>
+      <td>Real-time altitude above ground level.</td>
+    </tr>
+    <tr>
+      <td><strong>Vz / MACH</strong></td>
+      <td>Vertical Velocity (m/s) & Mach number</td>
+      <td>Monitors climb/descent rate; warns when approaching transonic speed.</td>
+    </tr>
+    <tr>
+      <td><strong>APOGEE</strong></td>
+      <td>Max Altitude Latched (m)</td>
+      <td>Latches peak altitude; computes ballistic apogee prediction.</td>
+    </tr>
+    <tr>
+      <td><strong>LAUNCH GATE</strong></td>
+      <td>GO / NO-GO Status Badge</td>
+      <td>Continuous safety check of data link, GPS lock, pad latch, and pyro.</td>
+    </tr>
+    <tr>
+      <td><strong>GPS / SATS</strong></td>
+      <td>Latitude, Longitude & Satellite Count</td>
+      <td>Shows 3D GPS fix (green when >= 4 satellites locked).</td>
+    </tr>
+    <tr>
+      <td><strong>ACCEL</strong></td>
+      <td>Peak Vertical G-Force (m/s²)</td>
+      <td>Displays instantaneous and peak acceleration.</td>
+    </tr>
+    <tr>
+      <td><strong>CONTINUITY</strong></td>
+      <td>Drogue & Main Pyro Loops</td>
+      <td>Green OK when e-match circuit closed; Red OPEN when broken.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Real-Time 60 FPS Strip Charts</h3>
+<p>
+  Powered by native <strong>PyQtGraph</strong>, four independent high-speed strip charts visualize flight performance:
+</p>
+<ul>
+  <li><strong>Altitude AGL:</strong> Plots barometric altitude with apogee latch line and flight phase color tags.</li>
+  <li><strong>Vertical Velocity (Vz):</strong> Plots vertical speed with 0 m/s zero-crossing line (indicating apogee).</li>
+  <li><strong>Acceleration:</strong> Displays vertical G-forces during boost motor burn and pyrotechnic ejection shocks.</li>
+  <li><strong>Pyrotechnic Continuity:</strong> Live digital continuity graph verifying e-match health throughout flight.</li>
+</ul>
+
+<!-- SECTION 4 -->
+<h2>4. Dual-Mode Recovery Map & Tactical Vector Radar</h2>
+
+<div class="callout success avoid-break">
+  <div class="callout-title">Field Recovery Architecture</div>
+  Click <strong>[Vector Radar (Offline)]</strong> on the map bar to switch between the interactive satellite map and the 100% offline tactical radar.
+</div>
+
+<div class="grid-2 avoid-break">
+  <div class="grid-col">
+    <strong>Mode 1: Interactive Web Map (Leaflet.js)</strong>
+    <ul>
+      <li><strong>Aerospace Dark (No Key):</strong> Inverted tactical street map.</li>
+      <li><strong>Satellite (Esri Imagery):</strong> Global high-res satellite photos.</li>
+      <li><strong>Topographic (Esri Topo):</strong> Contour lines and hillshading.</li>
+      <li><strong>Local Offline Tiles:</strong> Reads from <code>./tiles/{z}/{x}/{y}.png</code>.</li>
+    </ul>
+  </div>
+  <div class="grid-col">
+    <strong>Mode 2: Tactical Vector Radar (100% Offline)</strong>
+    <ul>
+      <li>Concentric range rings at 50m, 100m, 250m, 500m, 1km, 2km, 5km.</li>
+      <li>Compass crosshairs with cardinal markers (N, S, E, W).</li>
+      <li>Line-of-sight vector from pad to rocket (orange dash).</li>
+      <li>Predicted touchdown ellipse & drift vector (pink dash).</li>
+    </ul>
+  </div>
+</div>
+
+<h3>Recovery Telemetry Readout</h3>
+<pre><code>PAD: 14.59951°, 120.98422°  |  DOWNRANGE: 342.5 m  |  BEARING: 048.2° (NE)  |  SLANT: 580.1 m (Elev 35.8°)</code></pre>
+
+<ul>
+  <li><strong>Latch Pad:</strong> Locks the current GPS coordinate as the launch pad datum for range and bearing math.</li>
+  <li><strong>Copy GPS:</strong> Copies latitude, longitude, altitude, and a Google Maps recovery hyperlink directly to the Windows clipboard.</li>
+  <li><strong>Export HTML:</strong> Saves an interactive standalone Folium HTML map in <code>./telemetry_logs/</code>.</li>
+</ul>
+
+<!-- SECTION 5 -->
+<h2>5. Pre-Flight Checklist & Field Safety Procedures</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Phase</th>
+      <th>Checklist Item</th>
+      <th>Verification & Acceptance Criteria</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pre-1</strong></td>
+      <td>Radio Hardware</td>
+      <td>Connect USB receiver. Select COM port in RGS and click <strong>Connect</strong>.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-2</strong></td>
+      <td>Data Rate</td>
+      <td>Confirm <code>RATE: ~20 Hz</code> on bottom status bar and green packet counter.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-3</strong></td>
+      <td>GPS Acquisition</td>
+      <td>Verify <code>Sats >= 4</code> and coordinate jitter stabilizes under 5 meters.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-4</strong></td>
+      <td>Pad Latch</td>
+      <td>Click <strong>Latch Pad</strong>. Verify blue pad square appears and Downrange reads <code>0.0 m</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-5</strong></td>
+      <td>Barometric Test</td>
+      <td>Under Safety tab, check confirmation box and click <strong>TEST BARO</strong>. Altimeter responds.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-6</strong></td>
+      <td>Pyro Continuity</td>
+      <td>Verify Drogue and Main cards both indicate green <code>OK</code>.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-7</strong></td>
+      <td>Launch Readiness Gate</td>
+      <td>Verify GATE card indicates bright green <strong><code>GO FOR LAUNCH</code></strong>.</td>
+    </tr>
+    <tr>
+      <td><strong>Pre-8</strong></td>
+      <td>Arm & Launch</td>
+      <td>Arm launch controller. Voice announcer calls <em>"Liftoff detected"</em> at motor ignition.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- SECTION 6 -->
+<h2>6. PyInstaller Executable Compilation (.EXE)</h2>
+<p>
+  Package RGS into a standalone Windows executable containing the custom RGS icon and assets:
+</p>
+
+<pre><code># Run in PowerShell from the project folder:
+cd "c:\Users\Lenovo\OneDrive\Documents"
+python -m PyInstaller --noconsole --onefile --clean --name "RocketGroundStation" --icon="logo.ico" --add-data "logo.png;." gui.py</code></pre>
+
+<p>
+  The final executable will be located in <code>dist\RocketGroundStation.exe</code>.
+</p>
+
+<!-- SECTION 7 -->
+<h2>7. Avionics Firmware Integration (C++ / Arduino)</h2>
+<pre><code>#include &lt;Arduino.h&gt;
+
+struct __attribute__((packed)) TelemetryPacket {
+    uint8_t  sync1;        // 0xAA
+    uint8_t  sync2;        // 0x55
+    uint32_t timestamp_ms; // Flight computer uptime
+    uint8_t  flight_state; // 0=Pad, 1=Boost, 2=Coast, 3=Drogue, 4=Main, 5=Landed
+    float    accel_z;      // Vertical acceleration (m/s^2)
+    float    altitude_m;   // Barometric altitude AGL (m)
+    float    latitude;     // GPS decimal degrees
+    float    longitude;    // GPS decimal degrees
+    uint8_t  satellites;   // Tracked GPS satellite count
+    uint8_t  continuity;   // Bit 0 = Drogue, Bit 1 = Main
+    uint8_t  checksum;     // Running XOR checksum
+};
+
+void sendTelemetry(uint8_t state, float az, float alt, float lat, float lon, uint8_t sats, bool drogueOk, bool mainOk) {
+    TelemetryPacket pkt;
+    pkt.sync1 = 0xAA;
+    pkt.sync2 = 0x55;
+    pkt.timestamp_ms = millis();
+    pkt.flight_state = state;
+    pkt.accel_z = az;
+    pkt.altitude_m = alt;
+    pkt.latitude = lat;
+    pkt.longitude = lon;
+    pkt.satellites = sats;
+    pkt.continuity = (drogueOk ? 0x01 : 0x00) | (mainOk ? 0x02 : 0x00);
+
+    uint8_t* ptr = (uint8_t*)&pkt;
+    uint8_t cs = 0xAA;
+    for (int i = 2; i < 25; i++) {
+        cs ^= ptr[i];
+    }
+    pkt.checksum = cs;
+
+    Serial1.write((uint8_t*)&pkt, sizeof(pkt));
+}</code></pre>
+
+<div class="footer-text">
+  Rocket Ground Station (RGS) Operational Manual &bull; Document Version 2.4.0 &bull; Licensed under MIT
+</div>
+
+</body>
+</html>
